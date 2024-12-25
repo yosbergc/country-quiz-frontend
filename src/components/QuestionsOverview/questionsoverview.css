@@ -1,0 +1,21 @@
+.questions-overview-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.singleCurrentQuestion {
+    background-color: #393F6E;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #E2E4F3;
+    font-weight: 500;
+    cursor: pointer;
+}
+.activeQuestion {
+    background: linear-gradient(#E65895, #BC6BE8);
+}

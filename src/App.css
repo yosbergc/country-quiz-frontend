@@ -2,4 +2,20 @@ main {
   background: url("./assets/bg.jpg");
   height: 100vh;
   width: 100%;
+  display: flex;
+  place-items: center;
+}
+.quiz-container{
+  background: #343964;
+  max-width: 1000px;
+  width: calc(100% - 20px);
+  padding: 40px 20px;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+.quiz-container h3 {
+  color: #8B8EAB;
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 20px;
 }

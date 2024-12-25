@@ -1,14 +1,17 @@
-function questionsOverview({ currentQuestion, maxQuestions }) {
+import './questionsoverview.css'
+function QuestionsOverview({ quiz }) {
     return (
-        maxQuestions.map((_, index) => {
+        <section className='questions-overview-container'>
+        {quiz.questions.map((question, index) => {
             return <div
             key={index}
-            className={currentQuestion === index + 1 ? 'singleCurrentQuestion activeQuestion' : 'singleCurrentQuestion'}
+            className={quiz.currentQuestion > index? 'singleCurrentQuestion activeQuestion' : 'singleCurrentQuestion'}
             >
                 {index + 1}
             </div>
-        })
+        })}
+        </section>
     )
 }
 
-export { questionsOverview }
+export { QuestionsOverview }
