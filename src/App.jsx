@@ -1,80 +1,14 @@
 import './App.css'
-
-import { useState } from 'react'
+import { useQuiz } from './hooks/useQuiz'
 import { QuestionsOverview } from './components/QuestionsOverview/questionsOverview'
 import { Question } from './components/Question/Question'
 function App() {
-  const [quiz, setQuiz] = useState({
-    name: 'Country Quiz',
-    questions: [
-      {
-        question: '¿Cual es la capital de Colombia?',
-        options: [
-          'Bogota',
-          'Caracas',
-          'San Diego',
-          'Washington DC'
-        ],
-        answered: false,
-        answer: '',
-        correctAnswer: 'Bogota'
-      },
-      {
-        question: '¿Cual es la capital de Brasil?',
-        options: [
-          'Bogota',
-          'Caracas',
-          'San Diego',
-          'Washington DC'
-        ],
-        answered: false,
-        answer: '',
-        correctAnswer: 'Bogota'
-      },
-      {
-        question: '¿Cual es la capital de Colombia?',
-        options: [
-          'Bogota',
-          'Caracas',
-          'San Diego',
-          'Washington DC'
-        ],
-        answered: false,
-        answer: '',
-        correctAnswer: 'Bogota'
-      },
-      {
-        question: '¿Cual es la capital de Colombia?',
-        options: [
-          'Bogota',
-          'Caracas',
-          'San Diego',
-          'Washington DC'
-        ],
-        answered: false,
-        answer: '',
-        correctAnswer: 'Bogota'
-      },
-      {
-        question: '¿Cual es la capital de Colombia?',
-        options: [
-          'Bogota',
-          'Caracas',
-          'San Diego',
-          'Washington DC'
-        ],
-        answered: false,
-        answer: '',
-        correctAnswer: 'Bogota'
-      }
-    ],
-    currentQuestion: 1
-  })
+  const { quiz, setLevel } = useQuiz()
   return (
     <main>
       <section className="quiz-container">
         <h3>{quiz.name}</h3>
-        <QuestionsOverview quiz={quiz} />
+        <QuestionsOverview quiz={quiz} setLevel={setLevel} />
         <Question quiz={quiz} />
       </section>
     </main>
