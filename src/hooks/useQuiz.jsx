@@ -132,7 +132,7 @@ function useQuiz() {
         setQuiz(newQuiz)
     }
     function setAnswer(currentQuestion, answer) {
-      console.log(currentQuestion, answer)
+      if (quiz.questions[currentQuestion].answer !== '') return;
       const newQuiz = structuredClone(quiz)
       newQuiz.questions[currentQuestion].answer = answer;
       newQuiz.questions[currentQuestion].answered = true;
