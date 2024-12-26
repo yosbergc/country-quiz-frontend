@@ -24,3 +24,6 @@
 .option-single:hover {
     background: linear-gradient(#E65895, #BC6BE8);
 }
+.option-single-active {
+    background: linear-gradient(#E65895, #BC6BE8);
+}
