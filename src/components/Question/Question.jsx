@@ -15,6 +15,7 @@ function Question({ quiz, setAnswer }) {
                         const dynamicClass = `option-single ${quiz.questions[quiz.currentQuestion - 1].answer === answer && 'option-single-active'}`
                         const correctAnswer = quiz.questions[quiz.currentQuestion - 1].answer === quiz.questions[quiz.currentQuestion - 1].correctAnswer && answer === quiz.questions[quiz.currentQuestion - 1].answer;
                         const incorrectAnswer = quiz.questions[quiz.currentQuestion - 1].answer !== quiz.questions[quiz.currentQuestion - 1].correctAnswer && answer === quiz.questions[quiz.currentQuestion - 1].answer;
+                        console.log(answer)
                         return <button
                         key={answer}
                         className={dynamicClass}
@@ -23,6 +24,9 @@ function Question({ quiz, setAnswer }) {
                           {answer}
                           {
                             correctAnswer && <img src={Check} alt="Correct Answer" />
+                          }
+                          {
+                            quiz.questions[quiz.currentQuestion - 1].answered && quiz.questions[quiz.currentQuestion - 1].correctAnswer === answer && !correctAnswer && <img src={Check} alt="Correct Answer" />
                           }
                           {
                             incorrectAnswer && <img src={Close} alt='Incorrect answer'/>
