@@ -12,10 +12,13 @@ function Question({ quiz, setAnswer }) {
             <section className="options">
                 {
                     quiz.questions[quiz.currentQuestion - 1].options.map(answer => {
-                        const dynamicClass = `option-single ${quiz.questions[quiz.currentQuestion - 1].answer === answer && 'option-single-active'}`
-                        const correctAnswer = quiz.questions[quiz.currentQuestion - 1].answer === quiz.questions[quiz.currentQuestion - 1].correctAnswer && answer === quiz.questions[quiz.currentQuestion - 1].answer;
-                        const incorrectAnswer = quiz.questions[quiz.currentQuestion - 1].answer !== quiz.questions[quiz.currentQuestion - 1].correctAnswer && answer === quiz.questions[quiz.currentQuestion - 1].answer;
-                        console.log(answer)
+                        const currentQuestionAnswer = quiz.questions[quiz.currentQuestion - 1].answer;
+                        const correctAnswer = quiz.questions[quiz.currentQuestion - 1].correctAnswer;
+                        const answeredBoolean = quiz.questions[quiz.currentQuestion - 1].answered;
+
+                        const dynamicClass = `option-single ${ currentQuestionAnswer === answer && 'option-single-active'}`
+                        const correctAnswerValidation = currentQuestionAnswer === correctAnswer  && answer === currentQuestionAnswer;
+                        const incorrectAnswer = currentQuestionAnswer !== correctAnswer && answer === currentQuestionAnswer;
                         return <button
                         key={answer}
                         className={dynamicClass}
@@ -23,10 +26,10 @@ function Question({ quiz, setAnswer }) {
                         >
                           {answer}
                           {
-                            correctAnswer && <img src={Check} alt="Correct Answer" />
+                            correctAnswerValidation && <img src={Check} alt="Correct Answer" />
                           }
                           {
-                            quiz.questions[quiz.currentQuestion - 1].answered && quiz.questions[quiz.currentQuestion - 1].correctAnswer === answer && !correctAnswer && <img src={Check} alt="Correct Answer" />
+                            answeredBoolean && correctAnswer === answer && !correctAnswerValidation && <img src={Check} alt="Correct Answer" />
                           }
                           {
                             incorrectAnswer && <img src={Close} alt='Incorrect answer'/>

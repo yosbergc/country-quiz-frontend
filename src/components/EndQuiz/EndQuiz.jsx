@@ -1,0 +1,4 @@
+function EndQuiz() {
+    
+}
+export { EndQuiz }
