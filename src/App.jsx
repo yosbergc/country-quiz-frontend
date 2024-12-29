@@ -4,14 +4,23 @@ import { QuestionsOverview } from './components/QuestionsOverview/questionsOverv
 import { Question } from './components/Question/Question'
 import { EndQuiz } from './components/EndQuiz/EndQuiz'
 function App() {
-  const { quiz, setLevel, setAnswer } = useQuiz()
+  const { quiz, setLevel, setAnswer, quizCompleted, getCorrectAnswers } = useQuiz()
   return (
     <main>
-      <section className="quiz-container">
-        <h3>{quiz.name}</h3>
-        <QuestionsOverview quiz={quiz} setLevel={setLevel} />
-        <Question quiz={quiz} setAnswer={setAnswer} />
-      </section>
+        { !quizCompleted && (
+          <section className="quiz-container">
+            <h3>{quiz.name}</h3>
+            <QuestionsOverview quiz={quiz} setLevel={setLevel} />
+            <Question quiz={quiz} setAnswer={setAnswer} />
+        </section>
+    )}
+      {
+        quizCompleted && (
+        <section className='end-quiz-container'>
+          <EndQuiz quiz={quiz} quizCompleted={quizCompleted} getCorrectAnswers={getCorrectAnswers}/>
+        </section>
+        )
+      }
     </main>
   )
 }

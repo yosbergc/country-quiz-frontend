@@ -126,6 +126,7 @@ function useQuiz() {
         ],
         currentQuestion: 1
     })
+    const [quizCompleted, setQuizCompleted] = useState(false);
     function setLevel(level) {
         const newQuiz = {...quiz}
         newQuiz.currentQuestion = level;
@@ -139,7 +140,15 @@ function useQuiz() {
 
       setQuiz(newQuiz)
     }
-
+    function getCorrectAnswers(questions) {
+      return questions.reduce((prev, cur) => {
+        if (cur.correctAnswer === cur.answer) {
+          return prev + 1;
+        } else {
+          return prev;
+        }
+      }, 0) 
+    }
     useEffect(() => {
       const questions = quiz.questions;
 
@@ -148,9 +157,11 @@ function useQuiz() {
       });
 
       
-
+      if (isAllQuestionAnswered) {
+        setQuizCompleted(true);
+      }
 
     }, [quiz])
-    return { quiz, setLevel, setAnswer }
+    return { quiz, setLevel, setAnswer, quizCompleted, getCorrectAnswers }
 }
 export { useQuiz }

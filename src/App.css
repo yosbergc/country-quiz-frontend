@@ -13,6 +13,13 @@ main {
   border-radius: 10px;
   margin: 0 auto;
 }
+.end-quiz-container {
+  background: #343964;
+  padding: 40px 20px;
+  border-radius: 10px;
+  margin: 0 auto;
+  max-width: min-content;
+}
 .quiz-container h3 {
   color: #8B8EAB;
   font-size: 1rem;
