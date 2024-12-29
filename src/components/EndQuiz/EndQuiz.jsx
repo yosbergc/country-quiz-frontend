@@ -1,7 +1,7 @@
 import EndQuizImage from '../../assets/congrats.svg'
 import { useMemo } from 'react'
 import './endquiz.css'
-function EndQuiz({ quiz, quizCompleted, getCorrectAnswers }) {
+function EndQuiz({ quiz, quizCompleted, getCorrectAnswers, resetQuiz }) {
     const correctAnswered = useMemo(() => {
         if (quizCompleted) {
             return getCorrectAnswers(quiz.questions)
@@ -13,7 +13,7 @@ function EndQuiz({ quiz, quizCompleted, getCorrectAnswers }) {
             <h2>Congrats! You completed the quiz.</h2>
             <p>You answer {correctAnswered}/{quiz.questions.length} correctly</p>
 
-            <button>Play again</button>
+            <button onClick={resetQuiz}>Play again</button>
         </section>
     )
 }
