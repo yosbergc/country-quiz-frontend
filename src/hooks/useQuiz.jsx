@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 function useQuiz() {
     const [quiz, setQuiz] = useState({
         name: 'Country Quiz',
@@ -139,6 +139,18 @@ function useQuiz() {
 
       setQuiz(newQuiz)
     }
+
+    useEffect(() => {
+      const questions = quiz.questions;
+
+      const isAllQuestionAnswered = questions.every((question) => {
+        return question.answered === true;
+      });
+
+      
+
+
+    }, [quiz])
     return { quiz, setLevel, setAnswer }
 }
 export { useQuiz }

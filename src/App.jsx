@@ -2,6 +2,7 @@ import './App.css'
 import { useQuiz } from './hooks/useQuiz'
 import { QuestionsOverview } from './components/QuestionsOverview/questionsOverview'
 import { Question } from './components/Question/Question'
+import { EndQuiz } from './components/EndQuiz/EndQuiz'
 function App() {
   const { quiz, setLevel, setAnswer } = useQuiz()
   return (

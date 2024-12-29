@@ -2,7 +2,6 @@ import './question.css'
 import Check from '../../assets/Check_round_fill.svg'
 import Close from '../../assets/Close_round_fill.svg'
 function Question({ quiz, setAnswer }) {
-    
     return (
         <section className='single-question--container'>
             <h2
@@ -19,21 +18,11 @@ function Question({ quiz, setAnswer }) {
                         const dynamicClass = `option-single ${ currentQuestionAnswer === answer && 'option-single-active'}`
                         const correctAnswerValidation = currentQuestionAnswer === correctAnswer  && answer === currentQuestionAnswer;
                         const incorrectAnswer = currentQuestionAnswer !== correctAnswer && answer === currentQuestionAnswer;
-                        return <button
-                        key={answer}
-                        className={dynamicClass}
-                        onClick={() => setAnswer(quiz.currentQuestion - 1, answer)}
-                        >
-                          {answer}
-                          {
-                            correctAnswerValidation && <img src={Check} alt="Correct Answer" />
-                          }
-                          {
-                            answeredBoolean && correctAnswer === answer && !correctAnswerValidation && <img src={Check} alt="Correct Answer" />
-                          }
-                          {
-                            incorrectAnswer && <img src={Close} alt='Incorrect answer'/>
-                          }
+                        return <button key={answer} className={dynamicClass} onClick={() => setAnswer(quiz.currentQuestion - 1, answer)}>
+                          { answer  }
+                          { correctAnswerValidation && <img src={Check} alt="Correct Answer" /> }
+                          { answeredBoolean && correctAnswer === answer && !correctAnswerValidation && <img src={Check} alt="Correct Answer" /> }
+                          { incorrectAnswer && <img src={Close} alt='Incorrect answer'/>  }
                         </button>
                     })
                 }
