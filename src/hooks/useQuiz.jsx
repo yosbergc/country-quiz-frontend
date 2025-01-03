@@ -1,137 +1,25 @@
 import { useState, useEffect } from 'react'
+import { createQuestions } from '../utils/createQuestions'
 function useQuiz() {
     const initialState = {
       name: 'Country Quiz',
-      questions: [
-        {
-          question: '¿Cuál es la capital de Colombia?',
-          options: [
-            'Bogotá',
-            'Caracas',
-            'San Diego',
-            'Washington DC'
-          ],
-          answered: false,
-          answer: '',
-          correctAnswer: 'Bogotá'
-        },
-        {
-          question: '¿Cuál es la capital de Francia?',
-          options: [
-            'París',
-            'Londres',
-            'Roma',
-            'Berlín'
-          ],
-          answered: false,
-          answer: '',
-          correctAnswer: 'París'
-        },
-        {
-          question: '¿Cuál es la capital de Japón?',
-          options: [
-            'Tokio',
-            'Seúl',
-            'Pekín',
-            'Bangkok'
-          ],
-          answered: false,
-          answer: '',
-          correctAnswer: 'Tokio'
-        },
-        {
-          question: '¿Cuál es la capital de Italia?',
-          options: [
-            'Roma',
-            'Madrid',
-            'Lisboa',
-            'Atenas'
-          ],
-          answered: false,
-          answer: '',
-          correctAnswer: 'Roma'
-        },
-        {
-          question: '¿Cuál es la capital de Canadá?',
-          options: [
-            'Ottawa',
-            'Toronto',
-            'Vancouver',
-            'Montreal'
-          ],
-          answered: false,
-          answer: '',
-          correctAnswer: 'Ottawa'
-        },
-        {
-          question: '¿Cuál es la capital de Australia?',
-          options: [
-            'Canberra',
-            'Sídney',
-            'Melbourne',
-            'Brisbane'
-          ],
-          answered: false,
-          answer: '',
-          correctAnswer: 'Canberra'
-        },
-        {
-          question: '¿Cuál es la capital de Brasil?',
-          options: [
-            'Brasilia',
-            'Buenos Aires',
-            'Lima',
-            'Santiago'
-          ],
-          answered: false,
-          answer: '',
-          correctAnswer: 'Brasilia'
-        },
-        {
-          question: '¿Cuál es la capital de México?',
-          options: [
-            'Ciudad de México',
-            'Guadalajara',
-            'Monterrey',
-            'Tijuana'
-          ],
-          answered: false,
-          answer: '',
-          correctAnswer: 'Ciudad de México'
-        },
-        {
-          question: '¿Cuál es la capital de Egipto?',
-          options: [
-            'El Cairo',
-            'Alejandría',
-            'Luxor',
-            'Giza'
-          ],
-          answered: false,
-          answer: '',
-          correctAnswer: 'El Cairo'
-        },
-        {
-          question: '¿Cuál es la capital de Alemania?',
-          options: [
-            'Berlín',
-            'Hamburgo',
-            'Múnich',
-            'Fráncfort'
-          ],
-          answered: false,
-          answer: '',
-          correctAnswer: 'Berlín'
-        }
-      ],
+      questions: [],
       currentQuestion: 1
     }
     const [quiz, setQuiz] = useState(initialState)
     const [quizCompleted, setQuizCompleted] = useState(false);
+    const [loading, setLoading] = useState(true)
     function setLevel(level) {
         const newQuiz = {...quiz}
         newQuiz.currentQuestion = level;
         setQuiz(newQuiz)
+    }
+    async function getQuestions() {
+      const questions = await createQuestions(10);
+      const newQuiz = {...quiz}
+      newQuiz.questions = questions;
+      setQuiz(newQuiz)
+      setLoading(false)
     }
     function setAnswer(currentQuestion, answer) {
       if (quiz.questions[currentQuestion].answer !== '') return;
@@ -151,22 +39,28 @@ function useQuiz() {
       }, 0) 
     }
     function resetQuiz() {
+      setLoading(true)
       setQuiz(initialState)
       setQuizCompleted(false)
+      getQuestions()
     }
     useEffect(() => {
+      if (quiz.questions.length === 0) return;
       const questions = quiz.questions;
 
       const isAllQuestionAnswered = questions.every((question) => {
         return question.answered === true;
       });
-
       
       if (isAllQuestionAnswered) {
         setQuizCompleted(true);
       }
 
     }, [quiz])
-    return { quiz, setLevel, setAnswer, quizCompleted, getCorrectAnswers, resetQuiz }
+
+    useEffect(() => {
+      getQuestions()
+    }, [])
+    return { quiz, setLevel, setAnswer, quizCompleted, getCorrectAnswers, resetQuiz, loading }
 }
 export { useQuiz }

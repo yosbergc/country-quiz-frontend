@@ -3,12 +3,11 @@ import { useQuiz } from './hooks/useQuiz'
 import { QuestionsOverview } from './components/QuestionsOverview/questionsOverview'
 import { Question } from './components/Question/Question'
 import { EndQuiz } from './components/EndQuiz/EndQuiz'
-import { createQuestions } from './utils/createQuestions'
 function App() {
-  const { quiz, setLevel, setAnswer, quizCompleted, getCorrectAnswers, resetQuiz } = useQuiz()
+  const { quiz, setLevel, setAnswer, quizCompleted, getCorrectAnswers, resetQuiz, loading } = useQuiz()
   return (
     <main>
-        { !quizCompleted && (
+        { !quizCompleted && !loading && (
           <section className="quiz-container">
             <h3>{quiz.name}</h3>
             <QuestionsOverview quiz={quiz} setLevel={setLevel} />
@@ -16,7 +15,7 @@ function App() {
         </section>
     )}
       {
-        quizCompleted && (
+        quizCompleted && !loading && (
         <section className='end-quiz-container'>
           <EndQuiz quiz={quiz}
           quizCompleted={quizCompleted}

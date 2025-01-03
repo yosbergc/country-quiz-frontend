@@ -13,17 +13,18 @@ async function createQuestions(numberQuestions) {
             const countriesOptionsIndex = Array(4).fill(0).map(country => randomCountryNumber(countries.length))
 
             const countriesOptions = countriesOptionsIndex.map(index => {
-                return countries[index].name.common}
+                return countries[index].capital[0]}
             )
             
             return createCapitalQuestion(countries[country], countriesOptions)
             
         })
-        console.log(questions)
+        
+
+        return questions;
     } catch (error) {
         console.error(error)
     }
 }
 
-createQuestions(10)
 export { createQuestions }
