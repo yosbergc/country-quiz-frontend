@@ -3,6 +3,7 @@ import { useQuiz } from './hooks/useQuiz'
 import { QuestionsOverview } from './components/QuestionsOverview/questionsOverview'
 import { Question } from './components/Question/Question'
 import { EndQuiz } from './components/EndQuiz/EndQuiz'
+import { createQuestions } from './utils/createQuestions'
 function App() {
   const { quiz, setLevel, setAnswer, quizCompleted, getCorrectAnswers, resetQuiz } = useQuiz()
   return (
