@@ -1,6 +1,6 @@
 import './App.css'
 import { useQuiz } from './hooks/useQuiz'
-import { QuestionsOverview } from './components/QuestionsOverview/questionsOverview'
+import { QuestionsOverview } from './components/QuestionsOverview/QuestionsOverview'
 import { Question } from './components/Question/Question'
 import { EndQuiz } from './components/EndQuiz/EndQuiz'
 function App() {
