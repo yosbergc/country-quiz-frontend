@@ -16,7 +16,11 @@ function useQuiz() {
     }
     async function getQuestions() {
       const questions = await createQuestions(10);
-      const newQuiz = {...quiz}
+      const newQuiz = {
+        name: 'Country Quiz',
+        questions: [],
+        currentQuestion: 1
+      }
       newQuiz.questions = questions;
       setQuiz(newQuiz)
       setLoading(false)
