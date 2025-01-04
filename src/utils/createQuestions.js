@@ -11,7 +11,6 @@ async function createQuestions(numberQuestions) {
             const countriesOptions = countriesOptionsIndex.map(index => {
                 return countries[index]?.capital?.[0] || 'Not knowed'}
             )
-            console.log(countriesOptions)
             return createCapitalQuestion(countries[country], countriesOptions)
         })
         return questions;
